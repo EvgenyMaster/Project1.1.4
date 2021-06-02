@@ -13,20 +13,16 @@ public class Main {
 
     private static void taskMainImp(UserServiceImpl userService) {
         userService.createUsersTable();
-        try {
-            userService.saveUser("andy", "jefferson", (byte) 12);
-            System.out.println("User с именем – andy добавлен в базу данных");
-            userService.saveUser("andrey", "gibonov", (byte) 22);
-            System.out.println("User с именем – andrey добавлен в базу данных");
-            userService.saveUser("vasya", "oblomov", (byte) 43);
-            System.out.println("User с именем – vasya добавлен в базу данных");
-            userService.saveUser("ivan", "ivanov", (byte) 1);
-            System.out.println("User с именем – ivan добавлен в базу данных");
-            System.out.println(userService.getAllUsers());
-            userService.cleanUsersTable();
-        } catch (SQLException quiteCloser) {
-            /*NOP*/
-        }
+        userService.saveUser("andy", "jefferson", (byte) 12);
+        System.out.println("User с именем – andy добавлен в базу данных");
+        userService.saveUser("andrey", "gibonov", (byte) 22);
+        System.out.println("User с именем – andrey добавлен в базу данных");
+        userService.saveUser("vasya", "oblomov", (byte) 43);
+        System.out.println("User с именем – vasya добавлен в базу данных");
+        userService.saveUser("ivan", "ivanov", (byte) 1);
+        System.out.println("User с именем – ivan добавлен в базу данных");
+        System.out.println(userService.getAllUsers());
+        userService.cleanUsersTable();
         userService.dropUsersTable();
     }
 
