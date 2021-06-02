@@ -8,10 +8,10 @@ import java.sql.SQLException;
 public class Main {
     public static void main(String[] args) {
         UserServiceImpl userService = new UserServiceImpl();
-        JdbcTaskMain(userService);
+        taskMainImp(userService);
     }
 
-    public static void JdbcTaskMain(UserServiceImpl userService) {
+    private static void taskMainImp(UserServiceImpl userService) {
         userService.createUsersTable();
         try {
             userService.saveUser("andy", "jefferson", (byte) 12);
@@ -29,4 +29,5 @@ public class Main {
         }
         userService.dropUsersTable();
     }
+
 }

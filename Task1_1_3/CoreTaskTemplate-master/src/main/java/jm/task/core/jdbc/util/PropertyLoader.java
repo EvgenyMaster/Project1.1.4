@@ -1,4 +1,4 @@
-package util;
+package jm.task.core.jdbc.util;
 
 import java.io.IOException;
 import java.io.InputStream;

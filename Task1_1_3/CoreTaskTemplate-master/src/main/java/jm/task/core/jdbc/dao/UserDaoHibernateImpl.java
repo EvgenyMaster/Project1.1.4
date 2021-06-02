@@ -24,12 +24,49 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void createUsersTable() {
-
+        String sql = "CREATE TABLE IF NOT EXISTS \"project_jm\" " +
+                "(id serial constraint jmproject_pk primary key," +
+                "name varchar(40)," +
+                "lastname varchar(40)," +
+                "age int not null" +
+                ");";
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.createSQLQuery(sql).executeUpdate();
+            transaction.commit();
+        } catch (Exception e) {
+            logger.warning("Context : create table Problem : session save error");
+            try {
+                if (transaction != null) {
+                    transaction.rollback();
+                }
+            } catch (Exception ex) {
+                /*NOP*/
+            }
+        }
     }
 
     @Override
     public void dropUsersTable() {
-
+        String sql = "DROP TABLE IF EXISTS \"project_jm\";";
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.createSQLQuery(sql).executeUpdate();
+            transaction.commit();
+        } catch (Exception e) {
+            logger.warning("Context : drop table Problem : session save error");
+            try {
+                if (transaction != null) {
+                    transaction.rollback();
+                }
+            } catch (Exception ex) {
+                /*NOP*/
+            }
+        }
     }
 
     @Override
@@ -99,6 +136,22 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void cleanUsersTable() {
-
+        String sql = "TRUNCATE TABLE project_jm;";
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.createSQLQuery(sql).executeUpdate();
+            transaction.commit();
+        } catch (Exception e) {
+            logger.warning("Context : cleanUp table Problem : session save error");
+            try {
+                if (transaction != null) {
+                    transaction.rollback();
+                }
+            } catch (Exception ex) {
+                /*NOP*/
+            }
+        }
     }
 }

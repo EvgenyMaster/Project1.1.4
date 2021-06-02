@@ -16,7 +16,7 @@ public class UserDaoJDBCImpl implements UserDao {
     private final Logger logger = Logger.getLogger("UserDaoJDBCImpl");
 
     private static final String INSERT_USERS_SQL = new String("INSERT INTO public.project_jm(name, lastname, age) VALUES(?, ?, ?);");
-    private static final String CLEANUP_TABLE_SQL = new String("truncate table project_jm;");
+    private static final String CLEANUP_TABLE_SQL = new String("TRUNCATE TABLE project_jm;");
     private static final String SELECT_USER_BY_ID = new String("SELECT id,name,email,pass,role FROM public.project_jm WHERE id =?");
     private static final String SELECT_ALL_USERS = new String("SELECT * FROM public.project_jm");
     private static final String DELETE_USERS_SQL = new String("DELETE FROM public.project_jm WHERE id = ?;");
@@ -30,7 +30,6 @@ public class UserDaoJDBCImpl implements UserDao {
             ");");
 
     private final int indexId = 1;
-    private final int indexIdUpdate = 4;
     private final int indexName = 1;
     private final int indexLastName = 2;
     private final int indexAge = 3;
